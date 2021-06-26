@@ -36,18 +36,28 @@ public class Player : MonoBehaviour
         {
             Timer();
         }
+        if(rig.velocity.y <-1f)
+        {
+            Debug.Log(rig.velocity);
+            anim.SetBool("isFalling", true);
+        }else
+        {
+            Debug.Log(rig.velocity);
+            anim.SetBool("isFalling", false);
+        }
     }
 
     void Move()
     {
-        if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)){
-            anim.SetBool("running",true);
+        if(Input.GetButtonUp("Horizontal")){
+            anim.SetBool("running",false);
+        }
+        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
+            anim.SetBool("running",true);   
             transform.localScale = new Vector3(1,1,1);
-        }else if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)){
+        }else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)){
             anim.SetBool("running",true);
             transform.localScale = new Vector3(-1,1,1);
-        }else if(Input.GetButtonUp("Horizontal")){
-            anim.SetBool("running",false);
         }
         float horizontalMovement = Input.GetAxis("Horizontal") * Speed;
         float verticalMovement = rig.velocity.y;
@@ -59,6 +69,9 @@ public class Player : MonoBehaviour
     {
         if(Input.GetButtonDown("Jump"))
         {
+            anim.SetBool("jumping", true);
+            anim.SetBool("endFall", false);
+
             if(isJumping == false)
             {
                 rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
@@ -66,6 +79,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                anim.SetBool("jumping", false);
                 if(doubleJump)
                 {
                     rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
@@ -93,6 +107,20 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.tag == "Ground"){
+            anim.SetBool("endFall", true);
+            anim.SetBool("jumping", false);
+            anim.SetBool("isFalling", false);
+
+        }
+
+        if(collision.gameObject.tag == "Platform"){
+            anim.SetBool("endFall", true);
+            anim.SetBool("jumping", false);
+            anim.SetBool("isFalling", false);
+
+        }
+
         if(collision.gameObject.layer == 0)
         {
             isJumping = false;
@@ -116,6 +144,11 @@ public class Player : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
+        if(collision.gameObject.tag == "Ground"){
+            anim.SetBool("endFall", false);
+
+        }
+        
         if(collision.gameObject.layer == 0)
         {
             isJumping = true;
