@@ -9,9 +9,13 @@ public class Player : MonoBehaviour
      public float JumpForce;
      public bool isJumping;
      public bool doubleJump;
+     private bool isOnFloat = false;
      private bool IsOnBrilhinhos = false;
      private bool TimeIsOver = true;
      private Rigidbody2D rig;
+     private int dir;
+     private float iceEffect;
+     private bool isOnIce;
      //Timer
      private float waitTime = 3f;
      private float timer = 0f;
@@ -38,11 +42,9 @@ public class Player : MonoBehaviour
         }
         if(rig.velocity.y <-1f)
         {
-            Debug.Log(rig.velocity);
             anim.SetBool("isFalling", true);
         }else
         {
-            Debug.Log(rig.velocity);
             anim.SetBool("isFalling", false);
         }
     }
@@ -53,16 +55,18 @@ public class Player : MonoBehaviour
             anim.SetBool("running",false);
         }
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
-            anim.SetBool("running",true);   
+            anim.SetBool("running",true);
+            dir = 1;   
             transform.localScale = new Vector3(1,1,1);
         }else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)){
             anim.SetBool("running",true);
+            dir = -1;
             transform.localScale = new Vector3(-1,1,1);
         }
         float horizontalMovement = Input.GetAxis("Horizontal") * Speed;
         float verticalMovement = rig.velocity.y;
 
-        rig.velocity = new Vector2(horizontalMovement, verticalMovement);
+        rig.velocity = new Vector2(horizontalMovement + iceEffect, verticalMovement);
     }
 
     void Jump()
@@ -80,7 +84,7 @@ public class Player : MonoBehaviour
             else
             {
                 anim.SetBool("jumping", false);
-                if(doubleJump)
+                if(doubleJump && isOnFloat == false)
                 {
                     rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
                     doubleJump = false;
@@ -101,42 +105,59 @@ public class Player : MonoBehaviour
             Time.timeScale = 1f;
             TimeIsOver = true;
             IsOnBrilhinhos = false;
+            isOnFloat = false;
             Physics2D.gravity = new Vector2(0, -9.8f);
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        
+        //Contato com o gelo
+        if(collision.gameObject.tag == "Ice"){
+            isOnIce = true;
+            if(dir == 1){
+                iceEffect = Speed * 1.3f;
+            }else if (dir == -1)
+            {
+                iceEffect = Speed * -1.3f;
+            }
+        }
+        //Contato com o chão
         if(collision.gameObject.tag == "Ground"){
             anim.SetBool("endFall", true);
             anim.SetBool("jumping", false);
             anim.SetBool("isFalling", false);
-
+            if (!isOnIce)
+            {
+                iceEffect = 0f;
+            }
         }
-
+        //Contato com plataforma
         if(collision.gameObject.tag == "Platform"){
             anim.SetBool("endFall", true);
             anim.SetBool("jumping", false);
             anim.SetBool("isFalling", false);
 
         }
-
+        //Contato com layer 0 no geral
         if(collision.gameObject.layer == 0)
         {
             isJumping = false;
         }
-
+        //Contato com os brilhos
         if(collision.gameObject.tag == "Brilhinhos")
         {
             IsOnBrilhinhos = true;
             TimeIsOver = false;
+            isOnFloat = true;
             anim.SetBool("exitFloat", false);
             anim.SetBool("enterFloat", true);
 
             if(IsOnBrilhinhos && !TimeIsOver)
             {
                 Physics2D.gravity = new Vector2(0, 0f);
-                rig.velocity = new Vector2(0f, 1.5f);
+                rig.velocity = new Vector2(0f, 1.4f);
             }
             
         }
@@ -144,9 +165,18 @@ public class Player : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
+        
+        if(collision.gameObject.tag == "Ice"){
+            isOnIce = false;
+            if (isJumping == true)
+            {
+                
+            }else{
+                iceEffect = 0f;
+            }
+        }
         if(collision.gameObject.tag == "Ground"){
             anim.SetBool("endFall", false);
-
         }
         
         if(collision.gameObject.layer == 0)
