@@ -135,13 +135,12 @@ public class Player : MonoBehaviour
     void inTimer()
     {
         invTimer += Time.deltaTime;
-        Debug.Log(invTimer);
         if(invTimer > inWaitTime)
         {
-            Debug.Log("CABO");
             invTimer = 0f;
             Time.timeScale = 1f;
             Invencivel = false;
+            anim.SetBool("damage",false);
         }
     }
 
@@ -149,6 +148,7 @@ public class Player : MonoBehaviour
     {
         life -= 1;
         Invencivel = true;
+        anim.SetBool("damage",true);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -232,7 +232,7 @@ public class Player : MonoBehaviour
         }        
         
         //Contato com os Espinhos
-        if(collision.gameObject.tag == "Espinhos" && !Invencivel)
+        if(collision.gameObject.tag == "Espinhos")
         {
             IsOnEspinhos = false;
         }

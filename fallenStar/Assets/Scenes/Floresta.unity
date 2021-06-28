@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 317307846}
   - component: {fileID: 317307845}
   - component: {fileID: 317307844}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Espinhos
   m_TagString: Espinhos
   m_Icon: {fileID: 0}
@@ -1226,6 +1226,18 @@ PrefabInstance:
     - target: {fileID: 2220592140449548839, guid: 3897263f04ea981ed9323510a53a8076, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220592140449549272, guid: 3897263f04ea981ed9323510a53a8076, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220592140449549272, guid: 3897263f04ea981ed9323510a53a8076, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220592140449549272, guid: 3897263f04ea981ed9323510a53a8076, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2220592140449549275, guid: 3897263f04ea981ed9323510a53a8076, type: 3}
       propertyPath: m_Name
