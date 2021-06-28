@@ -6,26 +6,30 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
      
-     [SerializeField] private Text lifeMarker;
-     public ParticleSystem dust;
-     //private int maxLife = 3, life = 3;
-     public float Speed;
-     public float JumpForce;
-     public bool isJumping;
-     public bool doubleJump;
-     private bool isOnFloat = false;
-     private bool IsOnBrilhinhos = false;
-     private bool TimeIsOver = true;
-     private Rigidbody2D rig;
-     private int dir;
-     private float iceEffect;
-     private bool isOnIce;
-     //Timer
-     private float waitTime = 3f;
-     private float timer = 0f;
-     //Animator
-     public bool idle = true;
-     public Animator anim;
+    [SerializeField] private Text lifeMarker;
+    public ParticleSystem dust;
+    private int maxLife = 3, life = 3;
+    private bool Invencivel = false;
+    public float Speed;
+    public float JumpForce;
+    public bool isJumping;
+    public bool doubleJump;
+    private bool isOnFloat = false;
+    private bool IsOnBrilhinhos = false;
+    private bool IsOnEspinhos = false;
+    private bool TimeIsOver = true;
+    private Rigidbody2D rig;
+    private int dir;
+    private float iceEffect;
+    private bool isOnIce;
+    //Timer
+    private float waitTime = 3f;
+    private float timer = 0f;
+    private float inWaitTime = 1f;
+    private float invTimer = 0f;
+    //Animator
+    public bool idle = true;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -51,10 +55,19 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("isFalling", false);
         }
+        if(Invencivel)
+        {
+            inTimer();
+        }
+        if(IsOnEspinhos && !Invencivel)
+        {
+            TakeDamage();
+        }
+
     }
     void LifeUpdate()
     {
-        //lifeMarker.text = life.ToString() + "/" + maxLife.ToString();
+        lifeMarker.text = life.ToString() + "/" + maxLife.ToString();
     }
 
     void Move()
@@ -119,6 +132,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    void inTimer()
+    {
+        invTimer += Time.deltaTime;
+        Debug.Log(invTimer);
+        if(invTimer > inWaitTime)
+        {
+            Debug.Log("CABO");
+            invTimer = 0f;
+            Time.timeScale = 1f;
+            Invencivel = false;
+        }
+    }
+
+    void TakeDamage()
+    {
+        life -= 1;
+        Invencivel = true;
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         
@@ -170,6 +202,12 @@ public class Player : MonoBehaviour
             }
             
         }
+        //Contato com os Espinhos
+        if(collision.gameObject.tag == "Espinhos")
+        {
+            IsOnEspinhos = true;
+        }
+        
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -191,6 +229,12 @@ public class Player : MonoBehaviour
         if(collision.gameObject.layer == 0)
         {
             isJumping = true;
+        }        
+        
+        //Contato com os Espinhos
+        if(collision.gameObject.tag == "Espinhos" && !Invencivel)
+        {
+            IsOnEspinhos = false;
         }
     }
 
