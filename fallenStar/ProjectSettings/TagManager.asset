@@ -8,6 +8,7 @@ TagManager:
   - Brilhinhos
   - Ground
   - Ice
+  - LevelChangeByPlace
   layers:
   - Default
   - TransparentFX

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-
+     
+     [SerializeField] private Text lifeMarker;
+     //private int maxLife = 3, life = 3;
      public float Speed;
      public float JumpForce;
      public bool isJumping;
@@ -30,10 +33,10 @@ public class Player : MonoBehaviour
         Time.timeScale = 1f;
         anim.SetBool("freeTransition",true);
     }
-
     // Update is called once per frame
     void Update()
     {
+        //lifeMarker.text = life.ToString() + "/" + maxLife.ToString();
         Move();
         Jump();
         if(IsOnBrilhinhos)
