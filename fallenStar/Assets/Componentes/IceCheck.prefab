@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9058667478477082278}
   - component: {fileID: 9058667478477082277}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IceCheck
   m_TagString: Ice
   m_Icon: {fileID: 0}
