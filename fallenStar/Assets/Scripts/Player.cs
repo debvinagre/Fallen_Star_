@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
      
      [SerializeField] private Text lifeMarker;
+     public ParticleSystem dust;
      //private int maxLife = 3, life = 3;
      public float Speed;
      public float JumpForce;
@@ -36,8 +37,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //lifeMarker.text = life.ToString() + "/" + maxLife.ToString();
         Move();
+        LifeUpdate();
         Jump();
         if(IsOnBrilhinhos)
         {
@@ -50,6 +51,10 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("isFalling", false);
         }
+    }
+    void LifeUpdate()
+    {
+        //lifeMarker.text = life.ToString() + "/" + maxLife.ToString();
     }
 
     void Move()
@@ -91,6 +96,7 @@ public class Player : MonoBehaviour
                 {
                     rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
                     doubleJump = false;
+                    CreateDust();
                 }
             }
             
@@ -186,5 +192,10 @@ public class Player : MonoBehaviour
         {
             isJumping = true;
         }
+    }
+
+    void CreateDust()
+    {
+        dust.Play();
     }
 }
