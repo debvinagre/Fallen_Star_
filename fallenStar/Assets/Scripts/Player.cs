@@ -173,6 +173,9 @@ public class Player : MonoBehaviour
             {
                 iceEffect = 0f;
             }
+            if(rig.velocity.y <= -10f){
+                TakeDamage();
+            }
         }
         //Contato com plataforma
         if(collision.gameObject.tag == "Platform"){
