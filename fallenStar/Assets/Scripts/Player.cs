@@ -202,7 +202,8 @@ public class Player : MonoBehaviour
             if(state == "Luz"){
                 anim.SetBool("damage",false);
             }else{
-                anim.SetBool("damage", false);
+                anim.SetBool("shadowDamage", false);
+                Debug.Log(anim.GetBool("shadowDamage"));
             }
         }
     }
@@ -214,7 +215,8 @@ public class Player : MonoBehaviour
         if(state == "Luz"){
             anim.SetBool("damage",true);
         }else{
-            anim.SetBool("damage", true);
+            anim.SetBool("shadowDamage", true);
+            Debug.Log(anim.GetBool("shadowDamage"));
         }
     }
     
@@ -229,6 +231,7 @@ public class Player : MonoBehaviour
             anim.SetBool("isFalling", false);
             anim.SetBool("jumping", false);
             anim.SetBool("endFall", false);
+            anim.SetBool("damage",false);
             state = "Escuro";
         }else{
             anim.SetBool("transformShadow", false);
@@ -240,6 +243,7 @@ public class Player : MonoBehaviour
             anim.SetBool("shadowJumping", false);
             anim.SetBool("shadowEndFall", false);
             anim.SetBool("shadowHability", false);
+            anim.SetBool("shadowDamage", false);
             state = "Luz";
         }
 
@@ -247,11 +251,6 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
-        if(collision.gameObject.tag == "PlayerTransform"){
-            Transformation();
-        }
-        */
               
         //Contato com o gelo
         if(collision.gameObject.tag == "Ice"){
