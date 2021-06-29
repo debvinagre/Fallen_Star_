@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private int dir;
     private float iceEffect;
     private bool isOnIce;
+    private string state = "Luz";
     //Timer
     private float waitTime = 3f;
     private float timer = 0f;
@@ -50,10 +51,18 @@ public class Player : MonoBehaviour
         }
         if(rig.velocity.y <-1f)
         {
-            anim.SetBool("isFalling", true);
+            if(state == "Luz"){
+                anim.SetBool("isFalling", true);
+            }else{
+                anim.SetBool("shadowIsFalling", true);
+            }
         }else
         {
-            anim.SetBool("isFalling", false);
+            if(state == "Luz"){
+                anim.SetBool("isFalling", false);
+            }else{
+                anim.SetBool("shadowIsFalling", false);
+            }
         }
         if(Invencivel)
         {
@@ -65,6 +74,7 @@ public class Player : MonoBehaviour
         }
 
     }
+
     void LifeUpdate()
     {
         lifeMarker.text = life.ToString() + "/" + maxLife.ToString();
@@ -73,14 +83,26 @@ public class Player : MonoBehaviour
     void Move()
     {
         if(Input.GetButtonUp("Horizontal")){
-            anim.SetBool("running",false);
+            if(state == "Luz"){
+                anim.SetBool("running",false);
+            }else{
+                anim.SetBool("shadowRunning", false);
+            }
         }
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
-            anim.SetBool("running",true);
+            if(state == "Luz"){
+                anim.SetBool("running",true);
+            }else{
+                anim.SetBool("shadowRunning", true);
+            }
             dir = 1;   
             transform.localScale = new Vector3(1,1,1);
         }else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)){
-            anim.SetBool("running",true);
+            if(state == "Luz"){
+                anim.SetBool("running",true);
+            }else{
+                anim.SetBool("shadowRunning", true);
+            }
             dir = -1;
             transform.localScale = new Vector3(-1,1,1);
         }
@@ -94,8 +116,13 @@ public class Player : MonoBehaviour
     {
         if(Input.GetButtonDown("Jump"))
         {
-            anim.SetBool("jumping", true);
-            anim.SetBool("endFall", false);
+            if(state == "Luz"){
+                anim.SetBool("jumping", true);
+                anim.SetBool("endFall", false);
+            }else{
+                anim.SetBool("shadowJumping", true);
+                anim.SetBool("shadowEndFall", false);
+            }
 
             if(isJumping == false)
             {
@@ -104,7 +131,11 @@ public class Player : MonoBehaviour
             }
             else
             {
-                anim.SetBool("jumping", false);
+                if(state == "Luz"){
+                    anim.SetBool("jumping", false);
+                }else{
+                    anim.SetBool("shadowJumping", false);
+                }
                 if(doubleJump && isOnFloat == false)
                 {
                     rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
@@ -121,8 +152,13 @@ public class Player : MonoBehaviour
         timer += Time.deltaTime;
         if(timer > waitTime)
         {
-            anim.SetBool("exitFloat", true);
-            anim.SetBool("enterFloat", false);
+            if(state == "Luz"){
+                anim.SetBool("exitFloat", true);
+                anim.SetBool("enterFloat", false);
+            }else{
+                anim.SetBool("shadowExitFloat", true);
+                anim.SetBool("shadowEnterFloat", false);
+            }
             timer = 0f;
             Time.timeScale = 1f;
             TimeIsOver = true;
@@ -140,7 +176,11 @@ public class Player : MonoBehaviour
             invTimer = 0f;
             Time.timeScale = 1f;
             Invencivel = false;
-            anim.SetBool("damage",false);
+            if(state == "Luz"){
+                anim.SetBool("damage",false);
+            }else{
+                anim.SetBool("damage", false);
+            }
         }
     }
 
@@ -148,12 +188,45 @@ public class Player : MonoBehaviour
     {
         life -= 1;
         Invencivel = true;
-        anim.SetBool("damage",true);
+        if(state == "Luz"){
+            anim.SetBool("damage",true);
+        }else{
+            anim.SetBool("damage", true);
+        }
+    }
+    
+    void Transformation(){
+
+        if(state == "Luz"){
+            anim.SetBool("transformShadow", true);
+            anim.SetBool("transformLight", false);
+            anim.SetBool("running", false);
+            anim.SetBool("enterFloat", false);
+            anim.SetBool("exitFloat", false);
+            anim.SetBool("isFalling", false);
+            anim.SetBool("jumping", false);
+            anim.SetBool("endFall", false);
+            state = "Escuro";
+        }else{
+            anim.SetBool("transformShadow", false);
+            anim.SetBool("transformLight", true);
+            anim.SetBool("shadowRunning", false);
+            anim.SetBool("shadowEnterFloat", false);
+            anim.SetBool("shadowExitFloat", false);
+            anim.SetBool("shadowIsFalling", false);
+            anim.SetBool("shadowJumping", false);
+            anim.SetBool("shadowEndFall", false);
+            state = "Luz";
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if(collision.gameObject.tag == "PlayerTransform"){
+            Transformation();
+        }
+              
         //Contato com o gelo
         if(collision.gameObject.tag == "Ice"){
             isOnIce = true;
@@ -166,9 +239,15 @@ public class Player : MonoBehaviour
         }
         //Contato com o chão
         if(collision.gameObject.tag == "Ground"){
-            anim.SetBool("endFall", true);
-            anim.SetBool("jumping", false);
-            anim.SetBool("isFalling", false);
+            if(state == "Luz"){
+                anim.SetBool("endFall", true);
+                anim.SetBool("jumping", false);
+                anim.SetBool("isFalling", false);
+            }else{
+                anim.SetBool("shadowEndFall", true);
+                anim.SetBool("shadowJumping", false);
+                anim.SetBool("shadowIsFalling", false);
+            }
             if (!isOnIce)
             {
                 iceEffect = 0f;
@@ -179,9 +258,15 @@ public class Player : MonoBehaviour
         }
         //Contato com plataforma
         if(collision.gameObject.tag == "Platform"){
-            anim.SetBool("endFall", true);
-            anim.SetBool("jumping", false);
-            anim.SetBool("isFalling", false);
+            if(state == "Luz"){
+                anim.SetBool("endFall", true);
+                anim.SetBool("jumping", false);
+                anim.SetBool("isFalling", false);
+            }else{
+                anim.SetBool("shadowEndFall", true);
+                anim.SetBool("shadowJumping", false);
+                anim.SetBool("shadowIsFalling", false);
+            }
 
         }
         //Contato com layer 0 no geral
@@ -195,8 +280,13 @@ public class Player : MonoBehaviour
             IsOnBrilhinhos = true;
             TimeIsOver = false;
             isOnFloat = true;
-            anim.SetBool("exitFloat", false);
-            anim.SetBool("enterFloat", true);
+            if(state == "Luz"){
+                anim.SetBool("exitFloat", false);
+                anim.SetBool("enterFloat", true);
+            }else{
+                anim.SetBool("shadowExitFloat", false);
+                anim.SetBool("shadowEnterFloat", true);
+            }
 
             if(IsOnBrilhinhos && !TimeIsOver)
             {
@@ -215,6 +305,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
+        //Contato com o transformador
         
         if(collision.gameObject.tag == "Ice"){
             isOnIce = false;
@@ -226,7 +317,11 @@ public class Player : MonoBehaviour
             }
         }
         if(collision.gameObject.tag == "Ground"){
-            anim.SetBool("endFall", false);
+            if(state == "Luz"){
+                anim.SetBool("endFall", false);
+            }else{
+                anim.SetBool("shadowEndFall", false);
+            }
         }
         
         if(collision.gameObject.layer == 0)
