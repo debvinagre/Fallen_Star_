@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     private float inWaitTime = 1f;
     private float invTimer = 0f;
     //Animator
-    public bool idle = true;
     public Animator anim;
 
     // Start is called before the first frame update
@@ -200,7 +199,7 @@ public class Player : MonoBehaviour
         }
     }
     
-    void Transformation(){
+    public void Transformation(){
 
         if(state == "Luz"){
             anim.SetBool("transformShadow", true);
@@ -228,9 +227,11 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if(collision.gameObject.tag == "PlayerTransform"){
             Transformation();
         }
+        */
               
         //Contato com o gelo
         if(collision.gameObject.tag == "Ice"){
