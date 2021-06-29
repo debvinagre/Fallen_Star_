@@ -7,7 +7,12 @@ public class Player : MonoBehaviour
 {
      
     [SerializeField] private Text lifeMarker;
-    public ParticleSystem dust;
+    //Brilho Pulo Duplo
+    public ParticleSystem firstSystem;
+    //Brilho Gelo
+    public ParticleSystem secondSystem;
+    //Brilho Flutuar
+    public ParticleSystem thirdSystem;
     private int maxLife = 3, life = 3;
     private bool Invencivel = false;
     public float Speed;
@@ -232,9 +237,11 @@ public class Player : MonoBehaviour
             isOnIce = true;
             if(dir == 1){
                 iceEffect = Speed * 1.3f;
+                CreateDustGelo();
             }else if (dir == -1)
             {
                 iceEffect = Speed * -1.3f;
+                CreateDustGelo();
             }
         }
         //Contato com o chão
@@ -283,6 +290,7 @@ public class Player : MonoBehaviour
             if(state == "Luz"){
                 anim.SetBool("exitFloat", false);
                 anim.SetBool("enterFloat", true);
+                CreateDustFlutuar();
             }else{
                 anim.SetBool("shadowExitFloat", false);
                 anim.SetBool("shadowEnterFloat", true);
@@ -336,8 +344,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Brilhos Pulo Duplo
     void CreateDust()
     {
-        dust.Play();
+        firstSystem.Play();
+    }
+
+    //Brilhos Gelo
+    void CreateDustGelo()
+    {
+        secondSystem.Play();
+    }
+
+    //Brilhos Flutuar
+    void CreateDustFlutuar()
+    {
+        thirdSystem.Play();
     }
 }
