@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public ParticleSystem thirdSystem;
     private int maxLife = 3, life = 3;
     private bool Invencivel = false;
+    private bool idle;
     public float Speed;
     public float JumpForce;
     public bool isJumping;
@@ -76,6 +77,12 @@ public class Player : MonoBehaviour
         {
             TakeDamage();
         }
+        if (rig.velocity.y == 0f && rig.velocity.x == 0f)
+        {
+            idle = true;
+        }else{
+            idle = false;
+        }
 
     }
 
@@ -86,6 +93,18 @@ public class Player : MonoBehaviour
 
     void Move()
     {
+        if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
+            if (idle == true && state == "Escuro")
+            {
+                anim.SetBool("shadowHability", true);
+            }
+        }
+        if(Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)){
+            if (anim.GetBool("shadowHability"))
+            {
+                anim.SetBool("shadowHability", false);
+            }
+        }
         if(Input.GetButtonUp("Horizontal")){
             if(state == "Luz"){
                 anim.SetBool("running",false);
@@ -220,6 +239,7 @@ public class Player : MonoBehaviour
             anim.SetBool("shadowIsFalling", false);
             anim.SetBool("shadowJumping", false);
             anim.SetBool("shadowEndFall", false);
+            anim.SetBool("shadowHability", false);
             state = "Luz";
         }
 
