@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
      
-    [SerializeField] private Text lifeMarker;
     //Brilho Pulo Duplo
     public ParticleSystem firstSystem;
     //Brilho Gelo
     public ParticleSystem secondSystem;
     //Brilho Flutuar
     public ParticleSystem thirdSystem;
-    private int maxLife = 3, life = 3;
+    public int maxLife = 3, life = 3;
     private bool Invencivel = false;
     private bool idle;
     public float Speed;
@@ -29,6 +28,7 @@ public class Player : MonoBehaviour
     private float iceEffect;
     private bool isOnIce;
     private string state = "Luz";
+    private BoxCollider2D box;
     //Timer
     private float waitTime = 3f;
     private float timer = 0f;
@@ -43,12 +43,12 @@ public class Player : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
         anim.SetBool("freeTransition",true);
+        box = GetComponent<BoxCollider2D>();
     }
     // Update is called once per frame
     void Update()
     {
         Move();
-        LifeUpdate();
         Jump();
         if(IsOnBrilhinhos)
         {
@@ -75,7 +75,9 @@ public class Player : MonoBehaviour
         }
         if(IsOnEspinhos && !Invencivel)
         {
-            TakeDamage();
+            if (!anim.GetBool("shadowHability")){
+                TakeDamage();
+            }
         }
         if (rig.velocity.y == 0f && rig.velocity.x == 0f)
         {
@@ -86,23 +88,22 @@ public class Player : MonoBehaviour
 
     }
 
-    void LifeUpdate()
-    {
-        lifeMarker.text = life.ToString() + "/" + maxLife.ToString();
-    }
-
     void Move()
     {
         if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
             if (idle == true && state == "Escuro")
             {
                 anim.SetBool("shadowHability", true);
+                box.size = new Vector2(0.5f,0.45f);
+                box.offset = new Vector2(0,-0.25f);
             }
         }
         if(Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)){
             if (anim.GetBool("shadowHability"))
             {
                 anim.SetBool("shadowHability", false);
+                box.size = new Vector2(0.5f,0.9f);
+                box.offset = new Vector2(0,0);
             }
         }
         if(Input.GetButtonUp("Horizontal")){
@@ -149,7 +150,7 @@ public class Player : MonoBehaviour
 
             if(isJumping == false)
             {
-                rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+                rig.velocity = new Vector2(0f, JumpForce);
                 doubleJump = true;
             }
             else
@@ -161,7 +162,7 @@ public class Player : MonoBehaviour
                 }
                 if(doubleJump && isOnFloat == false)
                 {
-                    rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+                    rig.velocity = new Vector2(0f, JumpForce);
                     doubleJump = false;
                     CreateDust();
                 }
@@ -326,7 +327,9 @@ public class Player : MonoBehaviour
         //Contato com os Espinhos
         if(collision.gameObject.tag == "Espinhos")
         {
+            
             IsOnEspinhos = true;
+            
         }
         
     }
