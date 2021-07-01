@@ -4797,8 +4797,8 @@ MonoBehaviour:
   - {x: -2.9972024, y: 12.027609, z: 0}
   - {x: -21.950752, y: 12.080971, z: 0}
   m_ShapePathHash: 1732201235
-  m_Mesh: {fileID: 1290781799}
-  m_InstanceId: -69588
+  m_Mesh: {fileID: 1258303034}
+  m_InstanceId: 31176
 --- !u!1 &804623500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4871,6 +4871,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &967186859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5308233595990382324, guid: c10acdf7b97ef0ed6bb9e1ac7fa66759, type: 3}
+  m_PrefabInstance: {fileID: 2101671308}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bff46c1e6871714383646bd5b5d25fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1087259532
 GameObject:
   m_ObjectHideFlags: 0
@@ -4938,7 +4949,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1290781799
+--- !u!43 &1258303034
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5476,6 +5487,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 613920012710373899, guid: 96e8e1717ee3213b99665f73b40f3a99, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2049750219028519859, guid: 96e8e1717ee3213b99665f73b40f3a99, type: 3}
       propertyPath: m_Name
       value: UI
@@ -5564,6 +5579,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4666034554451944114, guid: 96e8e1717ee3213b99665f73b40f3a99, type: 3}
+      propertyPath: fire
+      value: 
+      objectReference: {fileID: 21300000, guid: ea94f85b1ec7e53c1b2c52b7169fe6b9, type: 3}
+    - target: {fileID: 4666034554451944114, guid: 96e8e1717ee3213b99665f73b40f3a99, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 967186859}
+    - target: {fileID: 4666034554451944114, guid: 96e8e1717ee3213b99665f73b40f3a99, type: 3}
+      propertyPath: darkFire
+      value: 
+      objectReference: {fileID: 21300000, guid: 9568ef72a7454045e959b64eb67c0966, type: 3}
     - target: {fileID: 4729990889763425624, guid: 96e8e1717ee3213b99665f73b40f3a99, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -150,12 +150,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bff46c1e6871714383646bd5b5d25fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeMarker: {fileID: 0}
   firstSystem: {fileID: 6303775717220716015}
   secondSystem: {fileID: 6303775716447699424}
   thirdSystem: {fileID: 6303775717841595539}
+  maxLife: 3
+  life: 3
   Speed: 4
-  JumpForce: 5
+  JumpForce: 7
   isJumping: 0
   doubleJump: 0
   anim: {fileID: 5308233595990382325}

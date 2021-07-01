@@ -11,6 +11,7 @@ TagManager:
   - LevelChangeByPlace
   - Espinhos
   - PlayerTransform
+  - Morcego
   layers:
   - Default
   - TransparentFX
@@ -21,9 +22,9 @@ TagManager:
   - IceGround
   - Espinhos e Inimigos
   - PlayerTransform
-  - 
-  - 
-  - 
+  - Player
+  - Morcego
+  - dm
   - 
   - 
   - 

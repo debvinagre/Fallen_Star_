@@ -252,6 +252,10 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.layer == 11)
+        {
+            TakeDamage();
+        }
               
         //Contato com o gelo
         if(collision.gameObject.tag == "Ice"){
