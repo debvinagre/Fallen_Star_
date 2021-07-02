@@ -168,6 +168,7 @@ public class Player : MonoBehaviour
                 {
                     rig.velocity = new Vector2(0f, JumpForce);
                     doubleJump = false;
+                    airJump = false;
                     CreateDust();
                 }
             }
@@ -303,6 +304,10 @@ public class Player : MonoBehaviour
                 anim.SetBool("shadowJumping", false);
                 anim.SetBool("shadowIsFalling", false);
             }
+            if (!isOnIce)
+            {
+                iceEffect = 0f;
+            }
 
         }
         //Contato com layer 0 no geral
@@ -340,6 +345,10 @@ public class Player : MonoBehaviour
             IsOnEspinhos = true;
             
         }
+        if(collision.gameObject.tag == "Life"){
+            maxLife++;
+            life++;
+        }
         
     }
 
@@ -355,10 +364,6 @@ public class Player : MonoBehaviour
             }else{
                 iceEffect = 0f;
             }
-        }
-        if(collision.gameObject.tag == "Life"){
-            maxLife++;
-            life++;
         }
         if(collision.gameObject.tag == "Ground"){
             if(state == "Luz"){
