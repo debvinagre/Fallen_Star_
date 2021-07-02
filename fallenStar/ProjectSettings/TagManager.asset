@@ -15,6 +15,7 @@ TagManager:
   - Life
   - SpawnPoint
   - DeathPit
+  - GotaSpawn
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Life
   - SpawnPoint
   - DeathPit
-  - 
+  - GotaSpawn
   - 
   - 
   - 
@@ -57,6 +58,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 3741319431
+    locked: 0
+  - name: "Po\xE7a"
+    uniqueID: 3088324291
     locked: 0
   - name: Player
     uniqueID: 327878051
