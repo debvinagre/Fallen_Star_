@@ -16,11 +16,15 @@ public class Morcego : MonoBehaviour
     [SerializeField] private float xSpeed,ySpeed;
     private float timer = 0f;
     private bool canAttack, cooldown, isLeaping, notOnGround;
+    public Animator anim;
 
     void Start(){
         canAttack = true;
         cooldown = false;
         Time.timeScale = 1f;
+        anim.SetBool("activate", false);
+        anim.SetBool("deactivate", false);
+        anim.SetBool("freeTransition", true);
     }
 
     void Update(){
@@ -40,10 +44,16 @@ public class Morcego : MonoBehaviour
         }else{
             isLeaping = false;
         }
+        if(rig.velocity.y == 0f){
+            anim.SetBool("activate" ,false);
+            anim.SetBool("deactivate", true);
+        }
     
     }
 
     void batAttack(){
+        anim.SetBool("activate", true);
+        anim.SetBool("deactivate", false);
         //Esquerda
         if(player.transform.position.x <= transform.position.x && (vl.canLeap || isLeaping)){
             canAttack = false;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7436049709132434149}
   - component: {fileID: 7436049709132434148}
   - component: {fileID: 7436049709132434147}
+  - component: {fileID: 8436245261098270170}
   m_Layer: 11
   m_Name: DamageVerify
   m_TagString: Untagged
@@ -61,6 +62,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.009749548, y: -0.121821955}
   m_Size: {x: 1.0584804, y: 0.75636053}
   m_Direction: 1
+--- !u!114 &8436245261098270170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436049709132434150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603eaa6aff1e5a2ad9905447ba4abd8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7436049709841306517
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +224,7 @@ MonoBehaviour:
   waitTime: 5
   xSpeed: 4.1
   ySpeed: 8.5
+  anim: {fileID: 7436049709841306512}
 --- !u!61 &7436049709841306515
 BoxCollider2D:
   m_ObjectHideFlags: 0

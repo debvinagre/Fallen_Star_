@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     private bool IsOnBrilhinhos = false;
     private bool IsOnEspinhos = false;
     private bool TimeIsOver = true;
-    private Rigidbody2D rig;
+    public Rigidbody2D rig;
     private int dir;
     private float iceEffect;
     private bool isOnIce, airJump;
@@ -32,10 +33,12 @@ public class Player : MonoBehaviour
     //Timer
     private float waitTime = 3f;
     private float timer = 0f;
-    private float inWaitTime = 1f;
+    private float inWaitTime = 1.5f;
     private float invTimer = 0f;
     //Animator
     public Animator anim;
+    public Vector2 spawnPoint;
+    [SerializeField] private string sceneToLoad;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +89,9 @@ public class Player : MonoBehaviour
             idle = true;
         }else{
             idle = false;
+        }
+        if(life == 0){
+            Die();
         }
 
     }
@@ -178,6 +184,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Die(){
+        SceneManager.LoadScene(sceneToLoad);
+    }
+
     void Timer()
     {
         timer += Time.deltaTime;
@@ -216,7 +226,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         life -= 1;
         Invencivel = true;
@@ -259,9 +269,9 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 11)
+        if (collision.gameObject.tag == "SpawnPoint")
         {
-            TakeDamage();
+            spawnPoint = new Vector2(collision.gameObject.transform.position.x,collision.gameObject.transform.position.y);
         }
               
         //Contato com o gelo
@@ -291,7 +301,7 @@ public class Player : MonoBehaviour
             {
                 iceEffect = 0f;
             }
-            if(rig.velocity.y <= -10f){
+            if(rig.velocity.y <= -15f){
                 TakeDamage();
             }
         }
@@ -309,6 +319,9 @@ public class Player : MonoBehaviour
             if (!isOnIce)
             {
                 iceEffect = 0f;
+            }
+            if(rig.velocity.y <= -15f){
+                TakeDamage();
             }
 
         }

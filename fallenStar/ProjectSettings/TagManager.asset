@@ -13,6 +13,8 @@ TagManager:
   - PlayerTransform
   - Morcego
   - Life
+  - SpawnPoint
+  - DeathPit
   layers:
   - Default
   - TransparentFX
@@ -27,8 +29,8 @@ TagManager:
   - Morcego
   - dm
   - Life
-  - 
-  - 
+  - SpawnPoint
+  - DeathPit
   - 
   - 
   - 
