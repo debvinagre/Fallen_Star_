@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public ParticleSystem secondSystem;
     //Brilho Flutuar
     public ParticleSystem thirdSystem;
-    public int maxLife = 3, life = 3;
+    public int maxLife, life;
     private bool Invencivel = false;
     private bool idle;
     public float Speed;
@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        life = 3;
+        maxLife = 3;
         rig = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
         anim.SetBool("freeTransition",true);
@@ -344,10 +346,6 @@ public class Player : MonoBehaviour
             
             IsOnEspinhos = true;
             
-        }
-        if(collision.gameObject.tag == "Life"){
-            maxLife++;
-            life++;
         }
         
     }

@@ -31,11 +31,12 @@ public class LifeUpdater : MonoBehaviour
     }
 
     void UpdateLife(){
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i <= 6; i++)
         {
             if (i<player.life)
             {
                 images[i].GetComponent<Image>().sprite = fire;
+                images[i].GetComponent<Image>().color =new Color32(255,255,255,255);
             }else if (player.life <= i && i < player.maxLife)
             {
                 images[i].GetComponent<Image>().sprite = darkFire;
