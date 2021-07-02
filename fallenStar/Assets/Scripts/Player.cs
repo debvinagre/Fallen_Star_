@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private int dir;
     private float iceEffect;
-    private bool isOnIce;
+    private bool isOnIce, airJump;
     private string state = "Luz";
     private BoxCollider2D box;
     //Timer
@@ -155,6 +155,10 @@ public class Player : MonoBehaviour
             }
             else
             {
+                if((anim.GetBool("isFalling") || anim.GetBool("shadowIsFalling")) && airJump){
+                    doubleJump = true;
+                    airJump = false;
+                }
                 if(state == "Luz"){
                     anim.SetBool("jumping", false);
                 }else{
@@ -305,6 +309,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.layer == 0)
         {
             isJumping = false;
+            airJump = true;
         }
         //Contato com os brilhos
         if(collision.gameObject.tag == "Brilhinhos")
@@ -324,7 +329,7 @@ public class Player : MonoBehaviour
             if(IsOnBrilhinhos && !TimeIsOver)
             {
                 Physics2D.gravity = new Vector2(0, 0f);
-                rig.velocity = new Vector2(0f, 1.4f);
+                rig.velocity = new Vector2(0f, 2.1f);
             }
             
         }
@@ -350,6 +355,10 @@ public class Player : MonoBehaviour
             }else{
                 iceEffect = 0f;
             }
+        }
+        if(collision.gameObject.tag == "Life"){
+            maxLife++;
+            life++;
         }
         if(collision.gameObject.tag == "Ground"){
             if(state == "Luz"){

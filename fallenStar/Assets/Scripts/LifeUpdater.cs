@@ -39,6 +39,7 @@ public class LifeUpdater : MonoBehaviour
             }else if (player.life <= i && i < player.maxLife)
             {
                 images[i].GetComponent<Image>().sprite = darkFire;
+                images[i].GetComponent<Image>().color =new Color32(255,255,255,255);
             }else if(i >= player.maxLife)
             {
                 images[i].GetComponent<Image>().color =new Color32(255,255,255,0);

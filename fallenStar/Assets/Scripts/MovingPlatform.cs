@@ -9,7 +9,7 @@ public class MovingPlatform : MonoBehaviour{
     [SerializeField] private float maxH;
     [SerializeField] bool MoveV;
     [SerializeField] bool MoveH;
-    [SerializeField] float movingSpeed;
+    [SerializeField] float movingSpeedX, movingSpeedY;
     [SerializeField] private GameObject Player;
     private float minV;
     private float minH;
@@ -52,10 +52,10 @@ public class MovingPlatform : MonoBehaviour{
             }
             //Configura o movimento
             if(isOnMaxH){
-                speedX = -movingSpeed;
+                speedX = -movingSpeedX;
             }
             if(isOnMinH){
-                speedX = movingSpeed;
+                speedX = movingSpeedX;
             }
 
         }else{
@@ -78,10 +78,10 @@ public class MovingPlatform : MonoBehaviour{
             }
             //Configura o movimento        
             if(isOnMaxV){
-                speedY = -movingSpeed;
+                speedY = -movingSpeedY;
             }        
             if(isOnMinV){
-                speedY = movingSpeed;
+                speedY = movingSpeedY;
             }
 
         }else{
