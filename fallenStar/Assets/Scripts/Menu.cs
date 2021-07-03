@@ -10,26 +10,31 @@ public class Menu : MonoBehaviour
     public string mapa1;
     public string cenas;
     public string creditos;
+    public AudioManager audio;
 
     //Chama jogo inicial (Fase Caverna)
     public void Jogar()
     {
         SceneManager.LoadScene(mapa1);
+        audio.Play("Button");
     }
     public void Cenas()
     {
         SceneManager.LoadScene(cenas);
+        
     }
 
     public void Créditos()
     {
-        SceneManager.LoadScene(creditos);
+        
     }
     public void Saída()
     {
         //Por enquanto dentro da Unity
+        #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+        #endif
         //Para quando estiver compilado
-        //Application.Quit();
+        Application.Quit();
     }
 }

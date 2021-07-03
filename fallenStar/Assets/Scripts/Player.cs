@@ -29,9 +29,10 @@ public class Player : MonoBehaviour
     public Rigidbody2D rig;
     private int dir;
     private float iceEffect;
-    private bool isOnIce, airJump;
-    private string state = "Luz";
+    private bool isOnIce, airJump, achatar,achatado;
+    public string state = "Luz";
     private BoxCollider2D box;
+    [SerializeField] private LayerMask teto;
     //Timer
     private float waitTime = 3f;
     private float timer = 0f;
@@ -103,22 +104,41 @@ public class Player : MonoBehaviour
 
     }
 
-    void Move()
-    {
-        if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
+
+    void Achatar(bool valor){
+        if(valor == true){
             if (idle == true && state == "Escuro")
             {
+                achatado = true;
                 anim.SetBool("shadowHability", true);
                 box.size = new Vector2(0.5f,0.35f);
                 box.offset = new Vector2(0,-0.25f);
+                
             }
-        }
-        if(Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)){
+        }else{
             if (anim.GetBool("shadowHability"))
             {
+                achatado = false;
                 anim.SetBool("shadowHability", false);
                 box.size = new Vector2(0.5f,0.9f);
                 box.offset = new Vector2(0,0);
+            }
+        }
+    }
+
+    void Move()
+    {
+        if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){      
+            Achatar(true);
+            achatar = true;
+        }
+        if(Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)){
+            achatar = false;
+        }
+        if(achatado && !achatar){
+            var sensor = Physics2D.Raycast((Vector2)transform.position + Vector2.down/3, Vector2.up,1,teto);
+            if(sensor.collider == null){
+                Achatar(false);
             }
         }
         if(Input.GetButtonUp("Horizontal")){
@@ -241,7 +261,6 @@ public class Player : MonoBehaviour
             anim.SetBool("damage",true);
         }else{
             anim.SetBool("shadowDamage", true);
-            Debug.Log(anim.GetBool("shadowDamage"));
         }
     }
     

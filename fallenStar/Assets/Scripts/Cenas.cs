@@ -5,22 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Cenas : MonoBehaviour
 {
+    public string nome;
    
     public void selectScene()
     {
-        switch (this.gameObject.name)
-        {
-        case "Cena1.1":
-            SceneManager.LoadScene ("Teste1");
-            break;
-        case "Cena2Botão":
-            SceneManager.LoadScene("Cena2");
-            break;
-        case "Cena3Botão":
-            SceneManager.LoadScene("Cena3");
-            break;
-           
-        }
+        SceneManager.LoadScene(nome);   
     
     }
     // Start is called before the first frame update
