@@ -9,6 +9,7 @@ public class LifeUpdater : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private Sprite fire, darkFire;
     private List<GameObject> images;
+    [SerializeField] private PlayerData data;
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +38,11 @@ public class LifeUpdater : MonoBehaviour
             {
                 images[i].GetComponent<Image>().sprite = fire;
                 images[i].GetComponent<Image>().color =new Color32(255,255,255,255);
-            }else if (player.life <= i && i < player.maxLife)
+            }else if (player.life <= i && i < data.maxLife)
             {
                 images[i].GetComponent<Image>().sprite = darkFire;
                 images[i].GetComponent<Image>().color =new Color32(255,255,255,255);
-            }else if(i >= player.maxLife)
+            }else if(i >= data.maxLife)
             {
                 images[i].GetComponent<Image>().color =new Color32(255,255,255,0);
             }

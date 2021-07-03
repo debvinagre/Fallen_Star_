@@ -16,6 +16,9 @@ TagManager:
   - SpawnPoint
   - DeathPit
   - GotaSpawn
+  - BrilhoFinal
+  - FilhoOff
+  - FilhoOff2
   layers:
   - Default
   - TransparentFX

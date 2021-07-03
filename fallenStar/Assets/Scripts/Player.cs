@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public ParticleSystem secondSystem;
     //Brilho Flutuar
     public ParticleSystem thirdSystem;
-    public int maxLife, life;
+    public int life;
     private bool Invencivel = false;
     private bool idle;
     public float Speed;
@@ -21,8 +21,11 @@ public class Player : MonoBehaviour
     public bool doubleJump;
     private bool isOnFloat = false;
     private bool IsOnBrilhinhos = false;
+    private bool IsOnBrilhinhosFinal = false;
     private bool IsOnEspinhos = false;
     private bool TimeIsOver = true;
+    private bool canMove = true;
+    public bool firstCamC, secondCamC;
     public Rigidbody2D rig;
     private int dir;
     private float iceEffect;
@@ -38,12 +41,13 @@ public class Player : MonoBehaviour
     public Animator anim;
     public Vector2 spawnPoint;
     [SerializeField] private string sceneToLoad;
+    //Scriptable
+    [SerializeField] private PlayerData data;
 
     // Start is called before the first frame update
     void Start()
     {
-        life = 3;
-        maxLife = 3;
+        life = data.maxLife;
         rig = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
         anim.SetBool("freeTransition",true);
@@ -52,7 +56,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(canMove){
+            Move();
+        }
         if(!anim.GetBool("shadowHability")){
             Jump();
         }
@@ -274,6 +280,15 @@ public class Player : MonoBehaviour
         {
             spawnPoint = new Vector2(collision.gameObject.transform.position.x,collision.gameObject.transform.position.y);
         }
+
+        if (collision.gameObject.tag == "FilhoOff")
+        {
+            firstCamC = true;
+        }
+        if (collision.gameObject.tag == "FilhoOff2")
+        {
+            secondCamC = true;
+        }
               
         //Contato com o gelo
         if(collision.gameObject.tag == "Ice"){
@@ -351,6 +366,27 @@ public class Player : MonoBehaviour
             {
                 Physics2D.gravity = new Vector2(0, 0f);
                 rig.velocity = new Vector2(0f, 2.1f);
+            }
+            
+        }
+        if(collision.gameObject.tag == "BrilhoFinal")
+        {
+            IsOnBrilhinhosFinal = true;
+            isOnFloat = true;
+            if(state == "Luz"){
+                anim.SetBool("exitFloat", false);
+                anim.SetBool("enterFloat", true);
+                CreateDustFlutuar();
+            }else{
+                anim.SetBool("shadowExitFloat", false);
+                anim.SetBool("shadowEnterFloat", true);
+            }
+
+            if(IsOnBrilhinhosFinal)
+            {
+                Physics2D.gravity = new Vector2(0, 0f);
+                rig.velocity = new Vector2(0f, 4.1f);
+                canMove = false;
             }
             
         }

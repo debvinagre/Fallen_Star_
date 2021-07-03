@@ -153,16 +153,18 @@ MonoBehaviour:
   firstSystem: {fileID: 6303775717220716015}
   secondSystem: {fileID: 6303775716447699424}
   thirdSystem: {fileID: 6303775717841595539}
-  maxLife: 3
   life: 3
   Speed: 4
   JumpForce: 7
   isJumping: 0
   doubleJump: 0
+  firstCamC: 0
+  secondCamC: 0
   rig: {fileID: 0}
   anim: {fileID: 5308233595990382325}
   spawnPoint: {x: 0, y: 0}
   sceneToLoad: 
+  data: {fileID: 11400000, guid: 38dd3378bedb5f7ef95d39d586e3ca94, type: 2}
 --- !u!95 &5308233595990382325
 Animator:
   serializedVersion: 3
@@ -9875,6 +9877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4ab6c76232f44839a3422aae3f2d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  light: {fileID: 0}
 --- !u!1 &6303775717736678152
 GameObject:
   m_ObjectHideFlags: 0
