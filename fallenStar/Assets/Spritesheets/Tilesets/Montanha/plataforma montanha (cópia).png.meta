@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: b62ecd9f229c5eec5bae10fd8f715188
+guid: 7e760d46561293631967c61685876f33
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4509414968257782079
-    second: Tile Gelo_0
+      213: 6606682655469608599
+    second: "plataforma montanha (c\xF3pia)_0"
   - first:
-      213: 4691105074079897334
-    second: Tile Gelo_1
+      213: -8527086739422144328
+    second: "plataforma montanha (c\xF3pia)_1"
   - first:
-      213: 1460441241784728435
-    second: Tile Gelo_2
+      213: 6808479692743322821
+    second: "plataforma montanha (c\xF3pia)_2"
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tile Gelo_0
+      name: "plataforma montanha (c\xF3pia)_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -114,14 +114,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f31a5df8509a49e30800000000000000
-      internalID: 4509414968257782079
+      spriteID: 79e10071fd6afab50800000000000000
+      internalID: 6606682655469608599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile Gelo_1
+      name: "plataforma montanha (c\xF3pia)_1"
       rect:
         serializedVersion: 2
         x: 32
@@ -135,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f69098d5372a1140800000000000000
-      internalID: 4691105074079897334
+      spriteID: 8b89cc7f9c3b9a980800000000000000
+      internalID: -8527086739422144328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile Gelo_2
+      name: "plataforma montanha (c\xF3pia)_2"
       rect:
         serializedVersion: 2
         x: 64
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37bb8e75297844410800000000000000
-      internalID: 1460441241784728435
+      spriteID: 5cc2d6a25349c7e50800000000000000
+      internalID: 6808479692743322821
       vertices: []
       indices: 
       edges: []
