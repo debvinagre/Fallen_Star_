@@ -17,6 +17,7 @@ public class Morcego : MonoBehaviour
     private float timer = 0f;
     private bool canAttack, cooldown, isLeaping, notOnGround;
     public Animator anim;
+    public AudioManager audio;
 
     void Start(){
         canAttack = true;
@@ -54,6 +55,7 @@ public class Morcego : MonoBehaviour
     void batAttack(){
         anim.SetBool("activate", true);
         anim.SetBool("deactivate", false);
+        audio.Play("Morcego");
         //Esquerda
         if(player.transform.position.x <= transform.position.x && (vl.canLeap || isLeaping)){
             canAttack = false;

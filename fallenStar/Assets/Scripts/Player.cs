@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public AudioManager audio;
     //Brilho Pulo Duplo
     public ParticleSystem firstSystem;
     //Brilho Gelo
@@ -109,6 +110,7 @@ public class Player : MonoBehaviour
         if(valor == true){
             if (idle == true && state == "Escuro")
             {
+                audio.Play("PoderSombra");
                 achatado = true;
                 anim.SetBool("shadowHability", true);
                 box.size = new Vector2(0.5f,0.35f);
@@ -118,6 +120,7 @@ public class Player : MonoBehaviour
         }else{
             if (anim.GetBool("shadowHability"))
             {
+                audio.Play("PoderSombra");
                 achatado = false;
                 anim.SetBool("shadowHability", false);
                 box.size = new Vector2(0.5f,0.9f);
@@ -165,6 +168,10 @@ public class Player : MonoBehaviour
             dir = -1;
             transform.localScale = new Vector3(-1,1,1);
         }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         float horizontalMovement = Input.GetAxis("Horizontal") * Speed;
         float verticalMovement = rig.velocity.y;
 
@@ -187,6 +194,7 @@ public class Player : MonoBehaviour
             {
                 rig.velocity = new Vector2(0f, JumpForce);
                 doubleJump = true;
+                audio.Play("Pulo");
             }
             else
             {
@@ -204,6 +212,7 @@ public class Player : MonoBehaviour
                     rig.velocity = new Vector2(0f, JumpForce);
                     doubleJump = false;
                     airJump = false;
+                    audio.Play("PuloDuplo");
                     CreateDust();
                 }
             }
@@ -255,6 +264,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
+        audio.Play("Dano");
         life -= 1;
         Invencivel = true;
         if(state == "Luz"){
@@ -267,6 +277,7 @@ public class Player : MonoBehaviour
     public void Transformation(){
 
         if(state == "Luz"){
+            audio.Play("LuzSombra");
             anim.SetBool("transformShadow", true);
             anim.SetBool("transformLight", false);
             anim.SetBool("running", false);
@@ -278,6 +289,7 @@ public class Player : MonoBehaviour
             anim.SetBool("damage",false);
             state = "Escuro";
         }else{
+            audio.Play("SombraLuz");
             anim.SetBool("transformShadow", false);
             anim.SetBool("transformLight", true);
             anim.SetBool("shadowRunning", false);
@@ -312,6 +324,7 @@ public class Player : MonoBehaviour
         //Contato com o gelo
         if(collision.gameObject.tag == "Ice"){
             isOnIce = true;
+            audio.Play("Gelo");
             if(dir == 1){
                 iceEffect = Speed * 1.3f;
                 CreateDustGelo();
@@ -383,6 +396,7 @@ public class Player : MonoBehaviour
 
             if(IsOnBrilhinhos && !TimeIsOver)
             {
+                audio.Play("FlutuarInicio");
                 Physics2D.gravity = new Vector2(0, 0f);
                 rig.velocity = new Vector2(0f, 2.1f);
             }

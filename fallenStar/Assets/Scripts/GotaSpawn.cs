@@ -9,6 +9,7 @@ public class GotaSpawn : MonoBehaviour
     private bool TimeIsOver = true;
     public GameObject gotaObj;
     public Gota gota;
+    public AudioSource audio;
 
     void Start(){
         Time.timeScale = 1f;
@@ -42,6 +43,7 @@ public class GotaSpawn : MonoBehaviour
         gotaObj.SetActive(true);
         gota.isOn = true;
         gota.isOff = false;
+        audio.Play();
         
     }
 }
