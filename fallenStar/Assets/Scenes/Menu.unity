@@ -2315,7 +2315,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Bruno Camenietzki\nJO\xC3O RABELLO\nJulliene Ribeiro   @jullimarineh\n"
+  m_Text: "Bruno Camenietzki   @brunotzki\nJO\xC3O RABELLO   @programajao\nJulliene
+    Ribeiro   @jullimarineh\n"
 --- !u!222 &1131595491
 CanvasRenderer:
   m_ObjectHideFlags: 0
