@@ -20,7 +20,6 @@ public class GotaSpawn : MonoBehaviour
         if (TimeIsOver)
         {
             Gota();
-            Debug.Log("YAMEROOOOOOO");
         }
         if (!TimeIsOver)
         {
@@ -32,7 +31,6 @@ public class GotaSpawn : MonoBehaviour
         timer += Time.deltaTime;
         if(timer > waitTime)
         {
-            Debug.Log("YAMEROOOOOOO");
             timer = 0f;
             Time.timeScale = 1f;
             TimeIsOver = true;
