@@ -62,6 +62,9 @@ TagManager:
   - name: "Po\xE7a"
     uniqueID: 3088324291
     locked: 0
+  - name: Cenario
+    uniqueID: 2746543281
+    locked: 0
   - name: Player
     uniqueID: 327878051
     locked: 0

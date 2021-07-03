@@ -376,7 +376,7 @@ public class Player : MonoBehaviour
                 iceEffect = 0f;
             }
         }
-        if(collision.gameObject.tag == "Ground"){
+        if(collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform"){
             if(state == "Luz"){
                 anim.SetBool("endFall", false);
             }else{

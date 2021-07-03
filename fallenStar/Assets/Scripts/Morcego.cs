@@ -29,7 +29,7 @@ public class Morcego : MonoBehaviour
 
     void Update(){
         dist = Vector2.Distance(this.transform.position, player.transform.position);
-        if(dist <= detect && canAttack){
+        if(dist <= detect && canAttack && !player.anim.GetBool("shadowHability")){
             batAttack();
         }
         if(cooldown){
