@@ -54,7 +54,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        Jump();
+        if(!anim.GetBool("shadowHability")){
+            Jump();
+        }
         if(IsOnBrilhinhos)
         {
             Timer();
@@ -102,7 +104,7 @@ public class Player : MonoBehaviour
             if (idle == true && state == "Escuro")
             {
                 anim.SetBool("shadowHability", true);
-                box.size = new Vector2(0.5f,0.45f);
+                box.size = new Vector2(0.5f,0.35f);
                 box.offset = new Vector2(0,-0.25f);
             }
         }
