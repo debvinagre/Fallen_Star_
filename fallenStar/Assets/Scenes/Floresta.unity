@@ -253,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6303775717644993047, guid: c10acdf7b97ef0ed6bb9e1ac7fa66759, type: 3}
       propertyPath: m_ShadowVolumeIntensity
-      value: 0.064
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6303775717644993047, guid: c10acdf7b97ef0ed6bb9e1ac7fa66759, type: 3}
       propertyPath: m_ApplyToSortingLayers.Array.size
@@ -10858,8 +10858,8 @@ MonoBehaviour:
   - {x: 39.63611, y: 14.964764, z: 0}
   - {x: 34.19558, y: 11.374327, z: 0}
   m_ShapePathHash: -1185990742
-  m_Mesh: {fileID: 1765854215}
-  m_InstanceId: -57410
+  m_Mesh: {fileID: 1472271978}
+  m_InstanceId: 31512
 --- !u!1 &1236867591
 GameObject:
   m_ObjectHideFlags: 0
@@ -12218,7 +12218,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!43 &1765854215
+--- !u!43 &1472271978
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
