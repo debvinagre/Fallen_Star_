@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-     
     //Brilho Pulo Duplo
     public ParticleSystem firstSystem;
     //Brilho Gelo
