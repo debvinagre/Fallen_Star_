@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 327878051
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1ca1dc1d526062743b0f4ed9f5ba996a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -159,7 +159,10 @@ MonoBehaviour:
   JumpForce: 7
   isJumping: 0
   doubleJump: 0
+  rig: {fileID: 0}
   anim: {fileID: 5308233595990382325}
+  spawnPoint: {x: 0, y: 0}
+  sceneToLoad: 
 --- !u!95 &5308233595990382325
 Animator:
   serializedVersion: 3
@@ -4956,7 +4959,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 327878051
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: -5
   m_RenderMode: 0
   m_SortMode: 0
@@ -9760,7 +9763,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 327878051
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: -5
   m_RenderMode: 0
   m_SortMode: 0
@@ -9797,6 +9800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6303775717644993046}
   - component: {fileID: 6303775717644993047}
+  - component: {fileID: 7445200284171203144}
   m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: Untagged
@@ -9859,6 +9863,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &7445200284171203144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6303775717644993033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4ab6c76232f44839a3422aae3f2d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6303775717736678152
 GameObject:
   m_ObjectHideFlags: 0
@@ -14697,7 +14713,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 327878051
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: -5
   m_RenderMode: 0
   m_SortMode: 0
