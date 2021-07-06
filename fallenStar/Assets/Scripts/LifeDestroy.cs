@@ -12,7 +12,7 @@ public class LifeDestroy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision){
         if(collision.gameObject.tag == "Player"){
             player.life++;
-            data.maxLife++;
+            data.temporaryMaxLife++;
             audio.Play("LifeUp");
             Object.Destroy(this.gameObject);
         }

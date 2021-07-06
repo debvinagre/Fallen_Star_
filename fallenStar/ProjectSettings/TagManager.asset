@@ -36,7 +36,7 @@ TagManager:
   - SpawnPoint
   - DeathPit
   - GotaSpawn
-  - 
+  - NextLevel
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1804847507
+    locked: 0
+  - name: CenarioFundo
+    uniqueID: 365082315
     locked: 0
   - name: Ground
     uniqueID: 3741319431

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3166962837201637040}
   - component: {fileID: 201506312928413266}
   - component: {fileID: 4297926001417430247}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: NextLevel
   m_TagString: LevelChangeByPlace
   m_Icon: {fileID: 0}
@@ -71,3 +71,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 
+  data: {fileID: 11400000, guid: 38dd3378bedb5f7ef95d39d586e3ca94, type: 2}

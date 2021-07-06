@@ -49,7 +49,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Physics2D.gravity = new Vector2(0, -9.8f);
         life = data.maxLife;
+        isJumping = true;
         rig = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
         anim.SetBool("freeTransition",true);
@@ -222,6 +224,7 @@ public class Player : MonoBehaviour
 
     void Die(){
         SceneManager.LoadScene(sceneToLoad);
+        data.temporaryMaxLife = 0;
     }
 
     void Timer()

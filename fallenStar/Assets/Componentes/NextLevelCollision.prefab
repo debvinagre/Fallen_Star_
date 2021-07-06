@@ -71,3 +71,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Caverna
+  data: {fileID: 11400000, guid: 38dd3378bedb5f7ef95d39d586e3ca94, type: 2}

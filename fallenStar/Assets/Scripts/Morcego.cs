@@ -55,17 +55,18 @@ public class Morcego : MonoBehaviour
     void batAttack(){
         anim.SetBool("activate", true);
         anim.SetBool("deactivate", false);
-        audio.Play("Morcego");
         //Esquerda
         if(player.transform.position.x <= transform.position.x && (vl.canLeap || isLeaping)){
             canAttack = false;
             cooldown = true;
             rig.AddForce(new Vector2(-1f*xSpeed,-1f*ySpeed), ForceMode2D.Impulse);
+            audio.Play("Morcego");
         //Direita
         }else if(player.transform.position.x > transform.position.x && (vr.canLeap || isLeaping)){
             canAttack = false;
             cooldown = true;
             rig.AddForce(new Vector2(1f*xSpeed,-1f*ySpeed), ForceMode2D.Impulse);
+            audio.Play("Morcego");
         }
     }
 

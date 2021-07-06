@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuitGame : MonoBehaviour
 {
+    [SerializeField] PlayerData data;
     public void Saída()
     {
         //Por enquanto dentro da Unity
@@ -11,6 +13,8 @@ public class QuitGame : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
         #endif
         //Para quando estiver compilado
-        Application.Quit();
+        SceneManager.LoadScene("Menu");
+        data.maxLife = 3;
+
     }
 }
